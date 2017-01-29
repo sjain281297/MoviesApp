@@ -1,10 +1,8 @@
-package com.example.shubhamjain.moviesapp2;
+package com.example.shubhamjain.moviesapp2.Activities;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,11 +12,17 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 
+import com.example.shubhamjain.moviesapp2.Adapters.ImageAdapter;
+import com.example.shubhamjain.moviesapp2.Models.Movie;
+import com.example.shubhamjain.moviesapp2.Adapters.MovieAdapter;
+import com.example.shubhamjain.moviesapp2.Network.MovieBackgroundTask;
+import com.example.shubhamjain.moviesapp2.Data.MovieOpenHelper;
+import com.example.shubhamjain.moviesapp2.R;
+
 import java.util.ArrayList;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity  {
-    ArrayList<ImageClass> data;
+    ArrayList<Movie> data;
     MovieAdapter adapter;
     GridView mGrid;
     ListView lv;
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity  {
 //            int id=c.getInt(c.getColumnIndex(MovieOpenHelper.MOVIE_ID));
 //            String descr=c.getString(c.getColumnIndex(MovieOpenHelper.MOVIE_DES));
 //            String background=c.getString(c.getColumnIndex(MovieOpenHelper.MOVIE_BACK));
-//            ImageClass m=new ImageClass(imagepath,id,descr,background);
+//            Movie m=new Movie(imagepath,id,descr,background);
 //            data.add(m);
 //        }
 
@@ -68,7 +72,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i=new Intent();
                 i.setClass(MainActivity.this,MovieActivity.class);
-                ImageClass ClickedImage=(ImageClass)parent.getAdapter().getItem(position);
+                Movie ClickedImage=(Movie)parent.getAdapter().getItem(position);
                 i.putExtra("image_id",ClickedImage.getId());
                 i.putExtra("Overview",ClickedImage.getDescription());
                 i.putExtra("Backdrop",ClickedImage.getBackDrop());
@@ -108,11 +112,11 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-    public static void sort(ArrayList<ImageClass> a){
+    public static void sort(ArrayList<Movie> a){
         for(int i=0;i<a.size();i++){
             for(int j=0;j<a.size()-i-1;j++){
                 if(a.get(j).getVote_count()>a.get(j+1).getVote_count()){
-                    ImageClass temp=a.get(j);
+                    Movie temp=a.get(j);
                     a.set(j,a.get(j+1));
                     a.set(j+1,temp);
                 }
@@ -121,14 +125,14 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-    public void processResults(ImageClass[] image) {
+    public void processResults(Movie[] image) {
 
         data.clear();
 
         MovieOpenHelper helper=new MovieOpenHelper(this);
         SQLiteDatabase db=helper.getWritableDatabase();
         db.delete(MovieOpenHelper.MOVIE_TABLE,null,null);
-        for(ImageClass c:image){
+        for(Movie c:image){
             ContentValues cv=new ContentValues();
             cv.put(MovieOpenHelper.MOVIE_BACK,c.getBackDrop());
             cv.put(MovieOpenHelper.MOVIE_ID,c.getId());

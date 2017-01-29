@@ -1,6 +1,8 @@
-package com.example.shubhamjain.moviesapp2;
+package com.example.shubhamjain.moviesapp2.Network;
 
 import android.os.AsyncTask;
+
+import com.example.shubhamjain.moviesapp2.Activities.MovieActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;

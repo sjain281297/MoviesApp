@@ -1,9 +1,7 @@
-package com.example.shubhamjain.moviesapp2;
+package com.example.shubhamjain.moviesapp2.Adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +10,19 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.example.shubhamjain.moviesapp2.R;
+
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by SHUBHAM JAIN on 28-06-2016.
+ * Created by SHUBHAM JAIN on 29-06-2016.
  */
-public class ImageAdapter extends ArrayAdapter<ImageClass> {
-    Context context;
-    ArrayList<ImageClass> imgData;
+public class ImageAdapter2 extends ArrayAdapter<Bitmap> {
 
-    public ImageAdapter(Context context,int resource, ArrayList<ImageClass> imgData) {
+    Context context;
+    ArrayList<Bitmap> imgData;
+
+    public ImageAdapter2(Context context,int resource, ArrayList<Bitmap> imgData) {
         super(context,resource,imgData);
         this.imgData=imgData;
         this.context = context;
@@ -46,7 +43,7 @@ public class ImageAdapter extends ArrayAdapter<ImageClass> {
         }
 
         ImageView imageViewTrail=(ImageView)v.findViewById(R.id.trailerImageView);
-
+        imageViewTrail.setImageBitmap(imgData.get(position));
 
 
         return v;

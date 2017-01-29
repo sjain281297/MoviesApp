@@ -1,26 +1,25 @@
-package com.example.shubhamjain.moviesapp2;
+package com.example.shubhamjain.moviesapp2.Adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
+
+import com.example.shubhamjain.moviesapp2.Models.Movie;
+import com.example.shubhamjain.moviesapp2.R;
 
 import java.util.ArrayList;
 
 /**
- * Created by SHUBHAM JAIN on 29-06-2016.
+ * Created by SHUBHAM JAIN on 28-06-2016.
  */
-public class ImageAdapter2 extends ArrayAdapter<Bitmap> {
-
+public class ImageAdapter extends ArrayAdapter<Movie> {
     Context context;
-    ArrayList<Bitmap> imgData;
+    ArrayList<Movie> imgData;
 
-    public ImageAdapter2(Context context,int resource, ArrayList<Bitmap> imgData) {
+    public ImageAdapter(Context context,int resource, ArrayList<Movie> imgData) {
         super(context,resource,imgData);
         this.imgData=imgData;
         this.context = context;
@@ -41,7 +40,7 @@ public class ImageAdapter2 extends ArrayAdapter<Bitmap> {
         }
 
         ImageView imageViewTrail=(ImageView)v.findViewById(R.id.trailerImageView);
-        imageViewTrail.setImageBitmap(imgData.get(position));
+
 
 
         return v;

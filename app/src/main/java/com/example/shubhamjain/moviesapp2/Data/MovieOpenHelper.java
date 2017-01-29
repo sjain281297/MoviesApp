@@ -1,4 +1,4 @@
-package com.example.shubhamjain.moviesapp2;
+package com.example.shubhamjain.moviesapp2.Data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

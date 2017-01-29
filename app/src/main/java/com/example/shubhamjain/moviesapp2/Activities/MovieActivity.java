@@ -1,25 +1,22 @@
-package com.example.shubhamjain.moviesapp2;
+package com.example.shubhamjain.moviesapp2.Activities;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Movie;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.shubhamjain.moviesapp2.Network.DescBackgroundTask;
+import com.example.shubhamjain.moviesapp2.Network.IdDownloadTask;
+import com.example.shubhamjain.moviesapp2.R;
+import com.example.shubhamjain.moviesapp2.Network.ReviewBackground;
+import com.example.shubhamjain.moviesapp2.Adapters.TrailerAdapter;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.net.URL;
 import java.util.ArrayList;
 
 public class MovieActivity extends AppCompatActivity {

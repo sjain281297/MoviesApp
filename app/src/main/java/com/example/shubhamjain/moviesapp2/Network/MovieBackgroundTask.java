@@ -1,9 +1,10 @@
-package com.example.shubhamjain.moviesapp2;
+package com.example.shubhamjain.moviesapp2.Network;
 
 import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+
+import com.example.shubhamjain.moviesapp2.Activities.MainActivity;
+import com.example.shubhamjain.moviesapp2.Models.Movie;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,7 +20,7 @@ import java.util.Scanner;
 /**
  * Created by SHUBHAM JAIN on 28-06-2016.
  */
-public class MovieBackgroundTask extends AsyncTask<String,Integer,ImageClass[]>{
+public class MovieBackgroundTask extends AsyncTask<String,Integer,Movie[]>{
 
     MainActivity activity;
      private ProgressDialog p;
@@ -29,7 +30,7 @@ public class MovieBackgroundTask extends AsyncTask<String,Integer,ImageClass[]>{
     }
 
     //    public interface MovieBackgroundTaskInterFace{
-//        void processResults(ImageClass [] image);
+//        void processResults(Movie [] image);
 //    }
 //    MovieBackgroundTaskInterFace listener;
 //
@@ -38,11 +39,11 @@ public class MovieBackgroundTask extends AsyncTask<String,Integer,ImageClass[]>{
 //        this.listener = listener;
 //    }
 
-    private ImageClass[] parseJson(String json){
+    private Movie[] parseJson(String json){
         try {
             JSONObject obj=new JSONObject(json);
             JSONArray movies=obj.getJSONArray("results");
-            ImageClass[] output=new ImageClass[movies.length()];
+            Movie[] output=new Movie[movies.length()];
             for(int i=0;i<movies.length();i++){
                 JSONObject moviesObject=movies.getJSONObject(i);
                 String imagepath=moviesObject.getString("poster_path");
@@ -51,7 +52,7 @@ public class MovieBackgroundTask extends AsyncTask<String,Integer,ImageClass[]>{
                 String overview=moviesObject.getString("overview");
                 String bd=moviesObject.getString("backdrop_path");
                 int votes=moviesObject.getInt("vote_count");
-                output[i]=new ImageClass(img,idnum,overview,bd,votes);
+                output[i]=new Movie(img,idnum,overview,bd,votes);
             }
             return output;
         } catch (JSONException e) {
@@ -62,7 +63,7 @@ public class MovieBackgroundTask extends AsyncTask<String,Integer,ImageClass[]>{
 
 
     @Override
-    protected ImageClass[] doInBackground(String... params) {
+    protected Movie[] doInBackground(String... params) {
         if(params.length==0){
             return null;
         }
@@ -113,7 +114,7 @@ public class MovieBackgroundTask extends AsyncTask<String,Integer,ImageClass[]>{
     }
 
     @Override
-    protected void onPostExecute(ImageClass[] bitmaps) {
+    protected void onPostExecute(Movie[] bitmaps) {
         p.dismiss();
         activity.processResults(bitmaps);
 

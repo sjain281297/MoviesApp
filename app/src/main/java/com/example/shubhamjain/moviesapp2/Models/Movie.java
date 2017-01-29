@@ -1,18 +1,18 @@
-package com.example.shubhamjain.moviesapp2;
+package com.example.shubhamjain.moviesapp2.Models;
 
 import android.graphics.Bitmap;
 
 /**
  * Created by SHUBHAM JAIN on 28-06-2016.
  */
-public class ImageClass {
+public class Movie {
     String image;
     int id;
     String description;
     String BackDrop;
     int vote_count;
 
-    public ImageClass(String image, int id,String description,String BackDrop,int vote_count) {
+    public Movie(String image, int id, String description, String BackDrop, int vote_count) {
         this.image = image;
         this.id = id;
         this.description=description;

@@ -1,4 +1,4 @@
-package com.example.shubhamjain.moviesapp2;
+package com.example.shubhamjain.moviesapp2.Adapters;
 
 import android.content.Context;
 import android.view.View;
@@ -7,19 +7,21 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.example.shubhamjain.moviesapp2.Models.Movie;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 /**
- * Created by SHUBHAM JAIN on 29-06-2016.
+ * Created by SHUBHAM JAIN on 28-06-2016.
  */
-public class TrailerAdapter extends BaseAdapter {
+public class MovieAdapter extends BaseAdapter {
+
 
     Context context;
-    ArrayList<String > mData;
+    ArrayList<Movie> mData;
 
-    public TrailerAdapter(Context context,ArrayList<String> mData ) {
+    public MovieAdapter(Context context,ArrayList<Movie> mData ) {
         this.context = context;
         this.mData=mData;
     }
@@ -43,11 +45,11 @@ public class TrailerAdapter extends BaseAdapter {
         ImageView tv;
         if(convertView==null){
             tv=new ImageView(context);
-            tv.setLayoutParams(new GridView.LayoutParams(190,190));
+            tv.setLayoutParams(new GridView.LayoutParams(250,250));
         }else{
             tv=(ImageView) convertView;
         }
-        Picasso.with(context).load(mData.get(position)).into(tv);
+        Picasso.with(context).load(mData.get(position).getImage()).into(tv);
 
         return tv;
 

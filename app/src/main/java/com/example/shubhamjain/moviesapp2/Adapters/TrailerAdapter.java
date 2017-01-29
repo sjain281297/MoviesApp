@@ -1,7 +1,6 @@
-package com.example.shubhamjain.moviesapp2;
+package com.example.shubhamjain.moviesapp2.Adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,15 +12,14 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 /**
- * Created by SHUBHAM JAIN on 28-06-2016.
+ * Created by SHUBHAM JAIN on 29-06-2016.
  */
-public class MovieAdapter extends BaseAdapter {
-
+public class TrailerAdapter extends BaseAdapter {
 
     Context context;
-    ArrayList<ImageClass> mData;
+    ArrayList<String > mData;
 
-    public MovieAdapter(Context context,ArrayList<ImageClass> mData ) {
+    public TrailerAdapter(Context context,ArrayList<String> mData ) {
         this.context = context;
         this.mData=mData;
     }
@@ -45,11 +43,11 @@ public class MovieAdapter extends BaseAdapter {
         ImageView tv;
         if(convertView==null){
             tv=new ImageView(context);
-            tv.setLayoutParams(new GridView.LayoutParams(250,250));
+            tv.setLayoutParams(new GridView.LayoutParams(190,190));
         }else{
             tv=(ImageView) convertView;
         }
-        Picasso.with(context).load(mData.get(position).getImage()).into(tv);
+        Picasso.with(context).load(mData.get(position)).into(tv);
 
         return tv;
 
